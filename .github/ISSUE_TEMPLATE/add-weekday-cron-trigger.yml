@@ -28,11 +28,12 @@ body:
     attributes:
       label: Note
       description: Add any optional context for the workflow change.
-  - type: markdown
+  - type: textarea
+    id: cron-workflow-format
     attributes:
+      label: Cron workflow format
+      description: Keep this format in the submitted issue so the workflow change is specified.
       value: |
-        ## Cron workflow format
-
         Add a conditional block to `.github/workflows/weekday-cron.yml`.
         When the trigger is met, call `ensure_issue` for the requested issue first.
         Then call `ensure_issue` for a cleanup issue that removes only that new trigger check.
@@ -47,3 +48,5 @@ body:
             'The trigger has been satisfied. Remove only the `<trigger check>` from `.github/workflows/weekday-cron.yml`.'
         fi
         ```
+    validations:
+      required: true
