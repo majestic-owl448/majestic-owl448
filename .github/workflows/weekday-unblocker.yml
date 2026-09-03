@@ -58,3 +58,12 @@ jobs:
               'Remove the curriculum-helpers#594 check from the weekday unblocker' \
               'The dependency PR has merged. Remove the `freeCodeCamp/curriculum-helpers#594` check from `.github/workflows/weekday-unblocker.yml`.'
           fi
+
+          if [ "$(gh pr view 69818 --repo freeCodeCamp/freeCodeCamp --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'this is a test issue' \
+              'https://github.com/freeCodeCamp/freeCodeCamp/pull/69818 has merged.'
+            ensure_issue \
+              'Remove the freeCodeCamp#69818 check from the weekday unblocker' \
+              'The dependency PR has merged. Remove the `freeCodeCamp/freeCodeCamp#69818` check from `.github/workflows/weekday-unblocker.yml`.'
+          fi
