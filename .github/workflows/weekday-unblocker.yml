@@ -47,7 +47,7 @@ jobs:
               $'https://github.com/freeCodeCamp/freeCodeCamp/pull/66731 has merged.\n\nUnblock https://github.com/freeCodeCamp/freeCodeCamp/issues/68228 and add the `help wanted` label.'; then
               create_issue_once \
                 'Remove the freeCodeCamp#66731 check from the weekday unblocker' \
-                'The dependency PR has merged. Remove only the `freeCodeCamp/freeCodeCamp#66731` check from `.github/workflows/weekday-unblocker.yml`; keep the weekday schedule and the curriculum-helpers check.' || {
+                'The dependency PR has merged. Remove the `freeCodeCamp/freeCodeCamp#66731` check from `.github/workflows/weekday-unblocker.yml`.' || {
                   status=$?
                   [ "$status" -eq 10 ] || exit "$status"
                 }
@@ -63,7 +63,7 @@ jobs:
               $'https://github.com/freeCodeCamp/curriculum-helpers/pull/594 has merged.\n\nUnblock these items:\n\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/69421\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68818\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68805\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68720\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68712\n- https://github.com/freeCodeCamp/freeCodeCamp/pull/69202'; then
               create_issue_once \
                 'Remove the curriculum-helpers#594 check from the weekday unblocker' \
-                'The dependency PR has merged. Remove only the `freeCodeCamp/curriculum-helpers#594` check from `.github/workflows/weekday-unblocker.yml`; keep the weekday schedule and the freeCodeCamp check.' || {
+                'The dependency PR has merged. Remove the `freeCodeCamp/curriculum-helpers#594` check from `.github/workflows/weekday-unblocker.yml`.' || {
                   status=$?
                   [ "$status" -eq 10 ] || exit "$status"
                 }
