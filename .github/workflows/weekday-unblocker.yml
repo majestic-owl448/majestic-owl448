@@ -1,0 +1,64 @@
+name: Weekday unblocker
+
+on:
+  schedule:
+    - cron: '0 7 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: read
+
+jobs:
+  create-unblocker-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create issues for merged dependencies
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          issue_exists() {
+            local title="$1"
+            local matches
+            matches=$(TITLE="$title" gh api -X GET search/issues \
+              -f q="repo:${REPOSITORY} is:issue in:title \"${title}\"" \
+              --jq '[.items[] | select(.title == env.TITLE)] | length')
+            [ "$matches" -gt 0 ]
+          }
+
+          create_issue_once() {
+            local title="$1"
+            local body="$2"
+
+            if issue_exists "$title"; then
+              echo "An issue titled '$title' already exists."
+              return
+            fi
+
+            gh issue create --repo "$REPOSITORY" --title "$title" --body "$body"
+          }
+
+          created_unblocker_issue=false
+
+          if [ "$(gh pr view 66731 --repo freeCodeCamp/freeCodeCamp --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            create_issue_once \
+              'Unblock freeCodeCamp#68228 and add help wanted' \
+              $'https://github.com/freeCodeCamp/freeCodeCamp/pull/66731 has merged.\n\nUnblock https://github.com/freeCodeCamp/freeCodeCamp/issues/68228 and add the `help wanted` label.'
+            created_unblocker_issue=true
+          fi
+
+          if [ "$(gh pr view 594 --repo freeCodeCamp/curriculum-helpers --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            create_issue_once \
+              'Unblock freeCodeCamp issues after curriculum-helpers#594' \
+              $'https://github.com/freeCodeCamp/curriculum-helpers/pull/594 has merged.\n\nUnblock these items:\n\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/69421\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68818\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68805\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68720\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68712\n- https://github.com/freeCodeCamp/freeCodeCamp/pull/69202'
+            created_unblocker_issue=true
+          fi
+
+          if [ "$created_unblocker_issue" = true ]; then
+            create_issue_once \
+              'Remove the weekday unblocker workflow' \
+              'The dependency PRs have merged. Remove `.github/workflows/weekday-unblocker.yml` after the resulting unblocker work is complete.'
+          fi
