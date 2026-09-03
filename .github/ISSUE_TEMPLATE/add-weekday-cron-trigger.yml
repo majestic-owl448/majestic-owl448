@@ -1,0 +1,37 @@
+name: Add weekday cron trigger
+description: Request an issue to be created when a condition is met.
+title: "Add weekday cron trigger: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Cron workflow format
+
+        Add a conditional block to `.github/workflows/weekday-cron.yml`.
+        When the trigger is met, call `ensure_issue` for the requested issue first.
+        Then call `ensure_issue` for a cleanup issue that removes only that new trigger check.
+
+        ```bash
+        if trigger_is_met; then
+          ensure_issue \
+            '<issue title>' \
+            '<issue body>'
+          ensure_issue \
+            'Remove the <trigger name> check from the weekday cron workflow' \
+            'The trigger has been satisfied. Remove only the `<trigger check>` from `.github/workflows/weekday-cron.yml`.'
+        fi
+        ```
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger
+      description: Describe the condition that should cause the workflow to create an issue.
+    validations:
+      required: true
+  - type: textarea
+    id: issue-content
+    attributes:
+      label: Issue content
+      description: Provide the title and body of the issue the workflow should create.
+    validations:
+      required: true
