@@ -23,6 +23,11 @@ body:
       description: Provide the body of the issue the workflow should create.
     validations:
       required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Note
+      description: Add any optional context for the workflow change.
   - type: markdown
     attributes:
       value: |
