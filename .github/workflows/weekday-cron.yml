@@ -58,3 +58,12 @@ jobs:
               'Remove the curriculum-helpers#594 check from the weekday cron workflow' \
               'The dependency PR has merged. Remove the `freeCodeCamp/curriculum-helpers#594` check from `.github/workflows/weekday-cron.yml`.'
           fi
+
+          if [ "$(gh pr view 69777 --repo freeCodeCamp/freeCodeCamp --json state,mergedAt --jq '.mergedAt != null or .state == "CLOSED"')" = "true" ]; then
+            ensure_issue \
+              'Continue work on Digital Pet lab' \
+              'continue working on https://github.com/freeCodeCamp/freeCodeCamp/pull/69782'
+            ensure_issue \
+              'Remove the freeCodeCamp#69777 check from the weekday cron workflow' \
+              'The dependency PR has been merged or closed. Remove the `freeCodeCamp/freeCodeCamp#69777` check from `.github/workflows/weekday-cron.yml`.'
+          fi
