@@ -1,0 +1,27 @@
+name: Contribute documentation audit
+
+on:
+  schedule:
+    - cron: '0 7 1 1,5,9 *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  create-documentation-audit-issues:
+    name: Create contribute documentation audit issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out contribute
+        uses: actions/checkout@v4
+        with:
+          repository: freeCodeCamp/contribute
+          path: contribute
+
+      - name: Create an issue for each Markdown file
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: .github/scripts/create-contribute-documentation-audit-issues.sh
