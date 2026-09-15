@@ -36,6 +36,14 @@ Before implementing an `Add weekday cron trigger` issue, read the request and
 check existing issues in this repository, both open and closed, and existing
 workflows, including any scripts they call.
 
+Use the trigger issue's supplied details to implement the request. Do not open
+or query linked external pull requests during this work, including their
+titles, bodies, comments, diffs, or current status. Limit duplicate and overlap
+checks to this repository's issues and workflows. Do not add context inferred
+from external pull requests to the implementation or its PR title or body.
+The generated workflow may query the external PR's status when it runs, as
+required by the requested trigger.
+
 First compare the meaning of the requested trigger condition and resulting
 actions with existing work. A workflow is a duplicate when both the trigger and
 the action are the same, even if they use different wording. Do not rely only on
