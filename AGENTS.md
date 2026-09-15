@@ -45,9 +45,10 @@ user's answer before implementing the request.
 
 Also flag partial overlaps to the user before proceeding. These include a
 trigger that already exists with a different action, or an action already
-mentioned in another issue body or workflow with a different trigger. Check
-issue bodies and generated issue bodies as well as titles. Show the matching
-issue or workflow and explain which part overlaps and which part differs.
+mentioned in another issue body or workflow, even if its trigger differs or is
+not specified. Check issue bodies and generated issue bodies as well as titles.
+Show the matching issue or workflow and explain which part overlaps and which
+part differs.
 
 If the workflow is not a duplicate, check whether either proposed generated
 issue title, including the cleanup issue title, is already used by an open or
