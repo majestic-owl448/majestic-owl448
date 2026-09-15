@@ -48,7 +48,8 @@ trigger that already exists with a different action, or an action already
 mentioned in another issue body or workflow, even if its trigger differs or is
 not specified. Check issue bodies and generated issue bodies as well as titles.
 Show the matching issue or workflow and explain which part overlaps and which
-part differs.
+part differs. For both duplicates and partial overlaps, ask the user how to
+proceed and wait for their response before implementing the request.
 
 If the workflow is not a duplicate, check whether either proposed generated
 issue title, including the cleanup issue title, is already used by an open or
