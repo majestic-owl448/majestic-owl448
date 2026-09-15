@@ -4,13 +4,18 @@
 
 When posting to GitHub for this repository, do not create links or cross-references
 to issues or pull requests in other repositories. Write external references in
-backticks, such as `owner/repo#123`, instead of using bare references, URLs, or
+backticks, such as `owner/repo#123`, instead of using bare references, bare URLs, or
 Markdown links.
 
 This rule applies to issue and pull request titles and bodies, comments, reviews,
 commit messages, and any other text that could generate an issue or pull request
 link on GitHub. It also applies to text posted by scripts, workflows, and other
 automation.
+
+When creating or modifying workflows or scripts that create issues or pull
+requests, ensure their generated titles, bodies, comments, and reviews follow
+this rule. Put external issue and pull request references in backticks in the
+generated text; links within this repository are allowed.
 
 Repository file contents are outside this rule's scope. When a file contains text
 that will be posted to GitHub, the resulting post must follow the rule.
