@@ -67,3 +67,12 @@ jobs:
               'Remove the `freeCodeCamp/freeCodeCamp#69777` check from the weekday cron workflow' \
               'The dependency PR has been merged or closed. Remove the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69777` check from `.github/workflows/weekday-cron.yml`.'
           fi
+
+          if [ "$(gh pr view 69580 --repo freeCodeCamp/freeCodeCamp --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'continue working on `freeCodeCamp/cdn#404`' \
+              'Keep an eye on deployments, when `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` is also deployed, `https://github.com/freeCodeCamp/cdn/pull/404` can be merged'
+            ensure_issue \
+              'Remove the `freeCodeCamp/freeCodeCamp#69580` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` check from `.github/workflows/weekday-cron.yml`.'
+          fi
