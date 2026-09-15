@@ -2,6 +2,13 @@ name: Add weekday cron trigger
 description: Request an issue to be created when a condition is met.
 title: "Add weekday cron trigger: "
 body:
+  - type: markdown
+    attributes:
+      value: |
+        For external issues and pull requests, use full URLs in backticks in the
+        trigger, issue body, and notes so they can be copied directly. In the
+        requested issue title, use backticked `owner/repo#123` references.
+        Links to issues and pull requests in this repository are allowed.
   - type: textarea
     id: trigger
     attributes:
@@ -13,14 +20,14 @@ body:
     id: issue-title
     attributes:
       label: Issue title
-      description: Provide the title of the issue the workflow should create.
+      description: Provide the title of the issue the workflow should create. Put external issue and PR references in backticks using the owner/repo#123 format.
     validations:
       required: true
   - type: textarea
     id: issue-body
     attributes:
       label: Issue body
-      description: Provide the body of the issue the workflow should create.
+      description: Provide the body of the issue the workflow should create. Put full external issue and PR URLs in backticks.
     validations:
       required: true
   - type: textarea
@@ -37,6 +44,11 @@ body:
         Add a conditional block to `.github/workflows/weekday-cron.yml`.
         When the trigger is met, call `ensure_issue` for the requested issue first.
         Then call `ensure_issue` for a cleanup issue that removes only that new trigger check.
+
+        When creating or modifying the workflow, apply these rules to both generated issues:
+        - In titles, put external issue and PR references in backticks using `owner/repo#123`.
+        - In bodies, put full external issue and PR URLs in backticks, preserving any comment or review fragment.
+        - Links to issues and PRs in this repository are allowed.
 
         ```bash
         if trigger_is_met; then
