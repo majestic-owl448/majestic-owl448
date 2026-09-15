@@ -43,27 +43,27 @@ jobs:
 
           if [ "$(gh pr view 66731 --repo freeCodeCamp/freeCodeCamp --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
             ensure_issue \
-              'Unblock freeCodeCamp#68228 and add help wanted' \
-              $'https://github.com/freeCodeCamp/freeCodeCamp/pull/66731 has merged.\n\nUnblock https://github.com/freeCodeCamp/freeCodeCamp/issues/68228 and add the `help wanted` label.'
+              'Unblock `freeCodeCamp/freeCodeCamp#68228` and add help wanted' \
+              $'`https://github.com/freeCodeCamp/freeCodeCamp/pull/66731` has merged.\n\nUnblock `https://github.com/freeCodeCamp/freeCodeCamp/issues/68228` and add the `help wanted` label.'
             ensure_issue \
-              'Remove the freeCodeCamp#66731 check from the weekday cron workflow' \
-              'The dependency PR has merged. Remove the `freeCodeCamp/freeCodeCamp#66731` check from `.github/workflows/weekday-cron.yml`.'
+              'Remove the `freeCodeCamp/freeCodeCamp#66731` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove the `https://github.com/freeCodeCamp/freeCodeCamp/pull/66731` check from `.github/workflows/weekday-cron.yml`.'
           fi
 
           if [ "$(gh pr view 594 --repo freeCodeCamp/curriculum-helpers --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
             ensure_issue \
-              'Unblock freeCodeCamp issues after curriculum-helpers#594' \
-              $'https://github.com/freeCodeCamp/curriculum-helpers/pull/594 has merged.\n\nUnblock these items:\n\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/69421\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68818\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68805\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68720\n- https://github.com/freeCodeCamp/freeCodeCamp/issues/68712\n- https://github.com/freeCodeCamp/freeCodeCamp/pull/69202'
+              'Unblock freeCodeCamp issues after `freeCodeCamp/curriculum-helpers#594`' \
+              $'`https://github.com/freeCodeCamp/curriculum-helpers/pull/594` has merged.\n\nUnblock these items:\n\n- `https://github.com/freeCodeCamp/freeCodeCamp/issues/69421`\n- `https://github.com/freeCodeCamp/freeCodeCamp/issues/68818`\n- `https://github.com/freeCodeCamp/freeCodeCamp/issues/68805`\n- `https://github.com/freeCodeCamp/freeCodeCamp/issues/68720`\n- `https://github.com/freeCodeCamp/freeCodeCamp/issues/68712`\n- `https://github.com/freeCodeCamp/freeCodeCamp/pull/69202`'
             ensure_issue \
-              'Remove the curriculum-helpers#594 check from the weekday cron workflow' \
-              'The dependency PR has merged. Remove the `freeCodeCamp/curriculum-helpers#594` check from `.github/workflows/weekday-cron.yml`.'
+              'Remove the `freeCodeCamp/curriculum-helpers#594` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove the `https://github.com/freeCodeCamp/curriculum-helpers/pull/594` check from `.github/workflows/weekday-cron.yml`.'
           fi
 
           if [ "$(gh pr view 69777 --repo freeCodeCamp/freeCodeCamp --json state,mergedAt --jq '.mergedAt != null or .state == "CLOSED"')" = "true" ]; then
             ensure_issue \
               'Continue work on Digital Pet lab' \
-              'continue working on https://github.com/freeCodeCamp/freeCodeCamp/pull/69782'
+              'continue working on `https://github.com/freeCodeCamp/freeCodeCamp/pull/69782`'
             ensure_issue \
-              'Remove the freeCodeCamp#69777 check from the weekday cron workflow' \
-              'The dependency PR has been merged or closed. Remove the `freeCodeCamp/freeCodeCamp#69777` check from `.github/workflows/weekday-cron.yml`.'
+              'Remove the `freeCodeCamp/freeCodeCamp#69777` check from the weekday cron workflow' \
+              'The dependency PR has been merged or closed. Remove the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69777` check from `.github/workflows/weekday-cron.yml`.'
           fi
