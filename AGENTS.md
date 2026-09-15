@@ -36,11 +36,18 @@ Before implementing an `Add weekday cron trigger` issue, read the request and
 check existing issues in this repository, both open and closed, and existing
 workflows, including any scripts they call.
 
-First compare the requested trigger condition and resulting actions with the
-existing work to determine whether the requested workflow is a duplicate. Do not
-rely only on matching titles. If it is a duplicate, show the user the matching
+First compare the meaning of the requested trigger condition and resulting
+actions with existing work. A workflow is a duplicate when both the trigger and
+the action are the same, even if they use different wording. Do not rely only on
+matching titles or exact text. If it is a duplicate, show the user the matching
 issue or workflow, explain the overlap, and ask how to proceed. Wait for the
 user's answer before implementing the request.
+
+Also flag partial overlaps to the user before proceeding. These include a
+trigger that already exists with a different action, or an action already
+mentioned in another issue body or workflow with a different trigger. Check
+issue bodies and generated issue bodies as well as titles. Show the matching
+issue or workflow and explain which part overlaps and which part differs.
 
 If the workflow is not a duplicate, check whether either proposed generated
 issue title, including the cleanup issue title, is already used by an open or
