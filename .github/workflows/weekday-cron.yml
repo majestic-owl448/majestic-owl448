@@ -76,3 +76,57 @@ jobs:
               'Remove the `freeCodeCamp/freeCodeCamp#69580` check from the weekday cron workflow' \
               'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` check from `.github/workflows/weekday-cron.yml`.'
           fi
+
+          if [ "$(gh pr view 405 --repo freeCodeCamp/cdn --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'unlock `freeCodeCamp/freeCodeCamp#70107`' \
+              'unlock `https://github.com/freeCodeCamp/freeCodeCamp/issues/70107`'
+            ensure_issue \
+              'Remove the `freeCodeCamp/cdn#405` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/405` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
+          if [ "$(gh pr view 406 --repo freeCodeCamp/cdn --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'unlock `freeCodeCamp/freeCodeCamp#70113`' \
+              'unlock `https://github.com/freeCodeCamp/freeCodeCamp/issues/70113`'
+            ensure_issue \
+              'Remove the `freeCodeCamp/cdn#406` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/406` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
+          if [ "$(gh pr view 407 --repo freeCodeCamp/cdn --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'unlock `freeCodeCamp/freeCodeCamp#70114`' \
+              'unlock `https://github.com/freeCodeCamp/freeCodeCamp/issues/70114`'
+            ensure_issue \
+              'Remove the `freeCodeCamp/cdn#407` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/407` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
+          if [ "$(gh pr view 408 --repo freeCodeCamp/cdn --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'unlock `freeCodeCamp/freeCodeCamp#70115`' \
+              'unlock `https://github.com/freeCodeCamp/freeCodeCamp/issues/70115`'
+            ensure_issue \
+              'Remove the `freeCodeCamp/cdn#408` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/408` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
+          if [ "$(gh pr view 409 --repo freeCodeCamp/cdn --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'unlock `freeCodeCamp/freeCodeCamp#70116`' \
+              'unlock `https://github.com/freeCodeCamp/freeCodeCamp/issues/70116`'
+            ensure_issue \
+              'Remove the `freeCodeCamp/cdn#409` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/409` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
+          if [ "$(gh pr view 410 --repo freeCodeCamp/cdn --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'unlock `freeCodeCamp/freeCodeCamp#70117`' \
+              'unlock `https://github.com/freeCodeCamp/freeCodeCamp/issues/70117`'
+            ensure_issue \
+              'Remove the `freeCodeCamp/cdn#410` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/410` check from `.github/workflows/weekday-cron.yml`.'
+          fi
