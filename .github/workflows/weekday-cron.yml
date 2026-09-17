@@ -136,12 +136,7 @@ jobs:
             pr_url="https://github.com/freeCodeCamp/curriculum-helpers/pull/${pr_number}"
 
             if [ "$pr_state" = "MERGED" ]; then
-              contribute_state=$(gh pr view 1518 --repo freeCodeCamp/contribute --json state --jq '.state')
-              if [ "$contribute_state" = "OPEN" ]; then
-                printf -v documentation_body '`%s` has merged.\n\nUpdate `https://github.com/freeCodeCamp/contribute/pull/1518` to document the changes from this PR.' "$pr_url"
-              else
-                printf -v documentation_body '`%s` has merged.\n\nUpdate `src/content/docs/curriculum-help.mdx` in `freeCodeCamp/contribute` directly to document the changes from this PR. `https://github.com/freeCodeCamp/contribute/pull/1518` is no longer open.' "$pr_url"
-              fi
+              printf -v documentation_body '`%s` has merged.\n\nUpdate `src/content/docs/curriculum-help.mdx` in `freeCodeCamp/contribute` to document the changes from this PR.' "$pr_url"
               ensure_issue \
                 "Update curriculum helper documentation after \`freeCodeCamp/curriculum-helpers#${pr_number}\`" \
                 "$documentation_body"
