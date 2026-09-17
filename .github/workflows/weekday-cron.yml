@@ -130,3 +130,27 @@ jobs:
               'Remove the `freeCodeCamp/cdn#410` check from the weekday cron workflow' \
               'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/cdn/pull/410` check from `.github/workflows/weekday-cron.yml`.'
           fi
+
+          for pr_number in 229 268 559 563 565 569 577 594 595 600 601 603 604; do
+            pr_state=$(gh pr view "$pr_number" --repo freeCodeCamp/curriculum-helpers --json state --jq '.state')
+            pr_url="https://github.com/freeCodeCamp/curriculum-helpers/pull/${pr_number}"
+
+            if [ "$pr_state" = "MERGED" ]; then
+              contribute_state=$(gh pr view 1518 --repo freeCodeCamp/contribute --json state --jq '.state')
+              if [ "$contribute_state" = "OPEN" ]; then
+                printf -v documentation_body '`%s` has merged.\n\nUpdate `https://github.com/freeCodeCamp/contribute/pull/1518` to document the changes from this PR.' "$pr_url"
+              else
+                printf -v documentation_body '`%s` has merged.\n\nUpdate `src/content/docs/curriculum-help.mdx` in `freeCodeCamp/contribute` directly to document the changes from this PR. `https://github.com/freeCodeCamp/contribute/pull/1518` is no longer open.' "$pr_url"
+              fi
+              ensure_issue \
+                "Update curriculum helper documentation after \`freeCodeCamp/curriculum-helpers#${pr_number}\`" \
+                "$documentation_body"
+            fi
+
+            if [ "$pr_state" = "MERGED" ] || [ "$pr_state" = "CLOSED" ]; then
+              printf -v cleanup_body '`%s` has merged or closed without merging.\n\nRemove only `%s` from the curriculum helper documentation loop in `.github/workflows/weekday-cron.yml`. Preserve the other PR numbers and any separate checks for this PR. If no PR numbers remain, remove the documentation loop.' "$pr_url" "$pr_number"
+              ensure_issue \
+                "Remove the \`freeCodeCamp/curriculum-helpers#${pr_number}\` documentation check from the weekday cron workflow" \
+                "$cleanup_body"
+            fi
+          done
