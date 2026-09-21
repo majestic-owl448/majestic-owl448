@@ -3,6 +3,7 @@ name: Contribute documentation audit
 on:
   schedule:
     - cron: '0 7 1 1,5,9 *'
+      timezone: 'Europe/Rome'
   workflow_dispatch:
 
 permissions:
