@@ -3,6 +3,7 @@ name: Weekday cron workflow
 on:
   schedule:
     - cron: '0 7 * * 1-5'
+      timezone: 'Europe/Rome'
   workflow_dispatch:
 
 permissions:
