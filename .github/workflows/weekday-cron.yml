@@ -78,6 +78,15 @@ jobs:
               'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` check from `.github/workflows/weekday-cron.yml`.'
           fi
 
+          if [ "$(gh issue view 70471 --repo freeCodeCamp/freeCodeCamp --json state,stateReason --jq '.state == "CLOSED" and .stateReason == "COMPLETED"')" = "true" ]; then
+            ensure_issue \
+              'Continue working on `freeCodeCamp/CurriculumExpansion#1130`' \
+              $'`https://github.com/freeCodeCamp/freeCodeCamp/issues/70471` was closed as completed.\n\nContinue working on `https://github.com/freeCodeCamp/CurriculumExpansion/issues/1130`.'
+            ensure_issue \
+              'Remove the `freeCodeCamp/freeCodeCamp#70471` check from the weekday cron workflow' \
+              'The issue was closed as completed. Remove only the `https://github.com/freeCodeCamp/freeCodeCamp/issues/70471` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
           for pr_number in 229 268 559 563 565 569 577 594 595 600 601 603 604; do
             pr_state=$(gh pr view "$pr_number" --repo freeCodeCamp/curriculum-helpers --json state --jq '.state')
             pr_url="https://github.com/freeCodeCamp/curriculum-helpers/pull/${pr_number}"
