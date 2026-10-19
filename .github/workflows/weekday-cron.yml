@@ -78,6 +78,15 @@ jobs:
               'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` check from `.github/workflows/weekday-cron.yml`.'
           fi
 
+          if [ "$(gh pr view 618 --repo freeCodeCamp/curriculum-helpers --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
+            ensure_issue \
+              'Rebase `freeCodeCamp/curriculum-helpers#327`' \
+              $'`https://github.com/freeCodeCamp/curriculum-helpers/pull/618` has merged.\n\nRebase `https://github.com/freeCodeCamp/curriculum-helpers/pull/327`.'
+            ensure_issue \
+              'Remove the `freeCodeCamp/curriculum-helpers#618` check from the weekday cron workflow' \
+              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/curriculum-helpers/pull/618` check from `.github/workflows/weekday-cron.yml`.'
+          fi
+
           for pr_number in 229 268 559 563 565 569 577 594 595 600 601 604; do
             pr_state=$(gh pr view "$pr_number" --repo freeCodeCamp/curriculum-helpers --json state --jq '.state')
             pr_url="https://github.com/freeCodeCamp/curriculum-helpers/pull/${pr_number}"
