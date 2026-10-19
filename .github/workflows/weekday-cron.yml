@@ -80,8 +80,8 @@ jobs:
 
           if [ "$(gh pr view 618 --repo freeCodeCamp/curriculum-helpers --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
             ensure_issue \
-              'Rebase `freeCodeCamp/curriculum-helpers#327`' \
-              $'`https://github.com/freeCodeCamp/curriculum-helpers/pull/618` has merged.\n\nRebase `https://github.com/freeCodeCamp/curriculum-helpers/pull/327`.'
+              'Rebase `freeCodeCamp/curriculum-helpers#600`' \
+              $'`https://github.com/freeCodeCamp/curriculum-helpers/pull/618` has merged.\n\nRebase `https://github.com/freeCodeCamp/curriculum-helpers/pull/600`.'
             ensure_issue \
               'Remove the `freeCodeCamp/curriculum-helpers#618` check from the weekday cron workflow' \
               'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/curriculum-helpers/pull/618` check from `.github/workflows/weekday-cron.yml`.'
