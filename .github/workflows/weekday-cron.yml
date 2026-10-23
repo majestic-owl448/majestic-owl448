@@ -69,13 +69,17 @@ jobs:
               'The dependency PR has been merged or closed. Remove the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69777` check from `.github/workflows/weekday-cron.yml`.'
           fi
 
-          if [ "$(gh pr view 69580 --repo freeCodeCamp/freeCodeCamp --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
-            ensure_issue \
-              'continue working on `freeCodeCamp/cdn#404`' \
-              'Keep an eye on deployments, when `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` is also deployed, `https://github.com/freeCodeCamp/cdn/pull/404` can be merged'
-            ensure_issue \
-              'Remove the `freeCodeCamp/freeCodeCamp#69580` check from the weekday cron workflow' \
-              'The dependency PR has merged. Remove only the `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` check from `.github/workflows/weekday-cron.yml`.'
+          merge_sha=$(gh pr view 69580 --repo freeCodeCamp/freeCodeCamp --json mergedAt,mergeCommit --jq 'if .mergedAt != null then .mergeCommit.oid // empty else empty end')
+          if [ -n "$merge_sha" ]; then
+            comparison=$(gh api "repos/freeCodeCamp/freeCodeCamp/compare/${merge_sha}...prod-current" --jq '.status')
+            if [ "$comparison" = "ahead" ] || [ "$comparison" = "identical" ]; then
+              ensure_issue \
+                'Continue `freeCodeCamp/cdn#404` after dependency reaches prod-current' \
+                $'The merge commit for `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` is now in `prod-current`.\n\nContinue work on `https://github.com/freeCodeCamp/cdn/pull/404`; its dependency has reached `prod-current`.'
+              ensure_issue \
+                'Remove the `freeCodeCamp/freeCodeCamp#69580` prod-current check' \
+                'The merge commit for `https://github.com/freeCodeCamp/freeCodeCamp/pull/69580` is now in `prod-current`. Remove only its merge SHA lookup and `prod-current` comparison block from `.github/workflows/weekday-cron.yml`.'
+            fi
           fi
 
           for pr_number in 229 268 559 563 565 569 577 594 595 600 601 604; do
