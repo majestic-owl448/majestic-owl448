@@ -42,15 +42,6 @@ jobs:
             gh issue create --repo "$REPOSITORY" --title "$title" --body "$body"
           }
 
-          if [ "$(gh pr view 66731 --repo freeCodeCamp/freeCodeCamp --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
-            ensure_issue \
-              'Unblock `freeCodeCamp/freeCodeCamp#68228` and add help wanted' \
-              $'`https://github.com/freeCodeCamp/freeCodeCamp/pull/66731` has merged.\n\nUnblock `https://github.com/freeCodeCamp/freeCodeCamp/issues/68228` and add the `help wanted` label.'
-            ensure_issue \
-              'Remove the `freeCodeCamp/freeCodeCamp#66731` check from the weekday cron workflow' \
-              'The dependency PR has merged. Remove the `https://github.com/freeCodeCamp/freeCodeCamp/pull/66731` check from `.github/workflows/weekday-cron.yml`.'
-          fi
-
           if [ "$(gh pr view 594 --repo freeCodeCamp/curriculum-helpers --json mergedAt --jq '.mergedAt != null')" = "true" ]; then
             ensure_issue \
               'Unblock freeCodeCamp issues after `freeCodeCamp/curriculum-helpers#594`' \
